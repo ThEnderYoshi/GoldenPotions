@@ -21,5 +21,7 @@ namespace GoldenPotions.Items.Potions
             Item.height = 38;
             Item.UseSound = SoundID.Item6;
         }
+
+        //TODO: Gender change dust effects
     }
 }
