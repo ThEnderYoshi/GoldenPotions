@@ -14,7 +14,7 @@ namespace GoldenPotions.Items.Potions.Buff
 
         public override void SafeStaticDefaults()
         {
-            Tooltip.SetDefault("Reduces damage taken by 10%");
+            Tooltip.SetDefault("Reduces damage taken by 20%");
         }
 
         public override void SafeDefaults()

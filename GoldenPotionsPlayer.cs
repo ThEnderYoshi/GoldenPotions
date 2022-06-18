@@ -58,7 +58,7 @@ namespace GoldenPotions
         {
             if (goldenEndurance)
             {
-                damage = (int)(damage * 0.4f);
+                damage = (int)(damage * 0.2f);
             }
         }
     }
