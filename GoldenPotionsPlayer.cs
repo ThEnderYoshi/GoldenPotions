@@ -10,6 +10,7 @@ namespace GoldenPotions
         public bool goldenArchery = false;
         public bool goldenEndurance = false;
         public bool goldenFeatherfall = false;
+        public bool goldenFishing = false;
 
         public override void ResetEffects()
         {
@@ -17,6 +18,7 @@ namespace GoldenPotions
             goldenArchery = false;
             goldenEndurance = false;
             goldenFeatherfall = false;
+            goldenFishing = false;
         }
 
         // -- Testers -- //
@@ -24,6 +26,16 @@ namespace GoldenPotions
         public override bool CanConsumeAmmo(Item weapon, Item ammo)
         {
             return !goldenAmmoReservation || Main.rand.NextFloat() > 0.4f;
+        }
+
+        // -- Getters -- //
+
+        public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
+        {
+            if (goldenFishing)
+            {
+                fishingLevel += 0.6f;
+            }
         }
 
         // -- Modifiers -- //
@@ -45,20 +57,22 @@ namespace GoldenPotions
             target.GetModPlayer<GoldenPotionsPlayer>().ApplyGoldenEndurance(ref damage);
         }
 
-        public override void PreUpdateMovement()
-        {
-            if (!Player.controlDown && Player.velocity.Y < 0f)
-            {
-                Player.velocity.Y = Player.controlUp ? 0f : (1f / 6f);
-            }
-        }
-
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             if (goldenArchery)
             {
                 velocity *= 1.4f;
                 damage = (int)(damage * 1.4f);
+            }
+        }
+
+        // -- Pre's -- //
+
+        public override void PreUpdateMovement()
+        {
+            if (goldenFeatherfall && !Player.controlDown && Player.velocity.Y > 0f)
+            {
+                Player.velocity.Y = Player.controlUp ? 0.0001f : (1f / 6f);
             }
         }
 

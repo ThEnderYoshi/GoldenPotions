@@ -13,7 +13,7 @@ namespace GoldenPotions.Buffs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Builder++");
-            Description.SetDefault("Increased placement speed and range");
+            Description.SetDefault("Greatly increased placement speed and range");
         }
 
         public override void SafeUpdate(Player player, ref int buffIndex)
