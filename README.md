@@ -30,6 +30,8 @@ A `++` is added to their names, and the icon recieves a golden background: \
 
 The buffs' stats are enhanced. Usually stat changes are doubled.
 
+Upgraded buffs overwrite the original buff. (With one ecxeption)
+
 ### Duration Upgrades
 These are the more boring upgrades.
 
