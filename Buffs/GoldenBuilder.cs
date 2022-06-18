@@ -20,6 +20,7 @@ namespace GoldenPotions.Buffs
         {
             player.tileSpeed *= 1.5f;
             player.wallSpeed *= 1.5f;
+            player.blockRange += 2;
         }
     }
 }
