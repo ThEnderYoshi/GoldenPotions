@@ -1,0 +1,3 @@
+displayName = Golden Potions
+author = ThEnderYoshi
+version = 0.1
