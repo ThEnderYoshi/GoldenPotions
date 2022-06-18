@@ -9,12 +9,14 @@ namespace GoldenPotions
         public bool goldenAmmoReservation = false;
         public bool goldenArchery = false;
         public bool goldenEndurance = false;
+        public bool goldenFeatherfall = false;
 
         public override void ResetEffects()
         {
             goldenAmmoReservation = false;
             goldenArchery = false;
             goldenEndurance = false;
+            goldenFeatherfall = false;
         }
 
         // -- Testers -- //
@@ -41,6 +43,14 @@ namespace GoldenPotions
         public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
         {
             target.GetModPlayer<GoldenPotionsPlayer>().ApplyGoldenEndurance(ref damage);
+        }
+
+        public override void PreUpdateMovement()
+        {
+            if (!Player.controlDown && Player.velocity.Y < 0f)
+            {
+                Player.velocity.Y = Player.controlUp ? 0f : (1f / 6f);
+            }
         }
 
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
