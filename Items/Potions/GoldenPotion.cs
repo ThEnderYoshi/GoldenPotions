@@ -23,6 +23,7 @@ namespace GoldenPotions.Items.Potions
 
         public override void SetDefaults()
         {
+            PreDefaults();
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.useAnimation = 17;
             Item.useTime = 17;
@@ -48,12 +49,16 @@ namespace GoldenPotions.Items.Potions
         /// <summary>
         /// Use this instead of <see cref="SetStaticDefaults"/>.
         /// </summary>
-        public virtual void SafeStaticDefaults() {}
+        public virtual void SafeStaticDefaults() { }
+        /// <summary>
+        /// Called at the start of <see cref="SetDefaults"/>.
+        /// </summary>
+        public virtual void PreDefaults() { }
         /// <summary>
         /// <para>Use this instead of <see cref="SetDefaults"/>.</para>
         /// <para>You mainly just need to set Item.width,
         /// Item.height, and Item.value.</para>
         /// </summary>
-        public virtual void SafeDefaults() {}
+        public virtual void SafeDefaults() { }
     }
 }
