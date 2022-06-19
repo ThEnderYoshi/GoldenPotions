@@ -47,6 +47,7 @@ This is pretty much the planned order of events, in terms of development.
 ⋮ **[ WIP! ]** Buff potions → Effect upgrades \
 ⋮ _Initial Release_ \
 ⋮ Flasks \
+⋮ _Flasks Update_ \
 ⋮ Other potions \
 ⋮ _Full Release_
 
