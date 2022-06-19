@@ -24,8 +24,9 @@ namespace GoldenPotions.Items.Potions.Buff
 
         public override void SafeDefaults()
         {
-            Item.shoot = ModContent.ProjectileType<GoldenLovePotionProj>();
             Item.UseSound = SoundID.Item1;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.shoot = ModContent.ProjectileType<GoldenLovePotionProj>();
         }
     }
 }
