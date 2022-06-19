@@ -11,6 +11,7 @@ namespace GoldenPotions
         public bool goldenEndurance = false;
         public bool goldenFeatherfall = false;
         public bool goldenFishing = false;
+        public bool goldenNightOwl = false;
 
         public int goldenInfernoCounter = 0;
 
@@ -21,6 +22,7 @@ namespace GoldenPotions
             goldenEndurance = false;
             goldenFeatherfall = false;
             goldenFishing = false;
+            goldenNightOwl = false;
         }
 
         // -- Testers -- //
