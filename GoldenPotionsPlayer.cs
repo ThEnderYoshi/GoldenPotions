@@ -12,6 +12,8 @@ namespace GoldenPotions
         public bool goldenFeatherfall = false;
         public bool goldenFishing = false;
 
+        public int goldenInfernoCounter = 0;
+
         public override void ResetEffects()
         {
             goldenAmmoReservation = false;
@@ -66,7 +68,18 @@ namespace GoldenPotions
             }
         }
 
-        // -- Pre's -- //
+        // -- Post Updates -- //
+
+        public override void PostUpdate()
+        {
+            goldenInfernoCounter++;
+            if (goldenInfernoCounter >= 180)
+            {
+                goldenInfernoCounter = 0;
+            }
+        }
+
+        // -- Pre Updates -- //
 
         public override void PreUpdateMovement()
         {
