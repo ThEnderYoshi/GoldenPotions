@@ -31,7 +31,7 @@ namespace GoldenPotions.Buffs
             const float maxDist = 200f;
             bool flag = player.GetModPlayer<GoldenPotionsPlayer>().goldenInfernoCounter % 60 == 0;
 
-            Lighting.AddLight((int)(player.position.X / 16f), (int)(player.position.Y / 16f), 0.65f, 0.4f, 0.1f);
+            Lighting.AddLight((int)(player.position.X / 16f), (int)(player.position.Y / 16f), 0.9f, 0.8f, 0.2f);
 
             if (player.whoAmI == Main.myPlayer)
             {
