@@ -1,6 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.DataStructures;
 
 namespace GoldenPotions.Buffs
@@ -15,11 +19,14 @@ namespace GoldenPotions.Buffs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Inferno++");
-            Description.SetDefault("Nearby enemies are ignited");
+            Description.SetDefault("Nearby enemies are ignited with hellfire");
         }
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
+            //player.inferno = true; // <-- Evil >:3
+            player.GetModPlayer<GoldenPotionsPlayer>().goldenInferno = true;
+
             const int damage = 10;
             const float maxDist = 200f;
             bool flag = player.GetModPlayer<GoldenPotionsPlayer>().goldenInfernoCounter % 60 == 0;
@@ -37,7 +44,7 @@ namespace GoldenPotions.Buffs
                             //FIXME: Find alternative(?) to Player.this.CanNPCBeHitByPlayerOrPlayerProjectile
                             && Vector2.Distance(player.Center, target.Center) <= maxDist)
                     {
-                        if (target.HasBuff(BuffID.OnFire3))
+                        if (!target.HasBuff(BuffID.OnFire3))
                         {
                             target.AddBuff(BuffID.OnFire3, 120); // 2 seconds
                         }
@@ -73,6 +80,71 @@ namespace GoldenPotions.Buffs
                         }
                     }
                 }
+            }
+        }
+    }
+
+    internal class GoldenInfernoPlayer : ModPlayer
+    {
+        private float ringRot;
+        private float ringScale = 1f;
+        private Asset<Texture2D> ringTexture;
+
+        public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+        {
+            if (Player.GetModPlayer<GoldenPotionsPlayer>().goldenInferno)
+            {
+                DrawRing();
+            }
+        }
+
+        private void LoadRing()
+        {
+            if (ringTexture == null)
+            {
+                ringTexture = ModContent.Request<Texture2D>("GoldenPotions/Buffs/GoldenInferno_Ring");
+            }
+        }
+
+        private void DrawRing()
+        {
+            LoadRing();
+
+            float scale = 1f;
+            float num2 = 0.1f;
+            float num3 = 0.9f;
+
+            // Scale
+            if (!Main.gamePaused) { ringScale += 0.004f; }
+            if (ringScale < 1f) { scale = ringScale; }
+            else
+            {
+                ringScale = 0.8f;
+                scale = ringScale;
+            }
+
+            // Rotation
+            if (!Main.gamePaused) { ringRot += 0.05f; }
+            if (ringRot > MathHelper.TwoPi) { ringRot -= MathHelper.TwoPi; }
+            if (ringRot < -MathHelper.TwoPi) { ringRot += MathHelper.TwoPi; }
+
+            // Draw rings
+            for (int i = 0; i < 3; i++)
+            {
+                float finalScale = scale + num2 * i;
+                if (finalScale > 1f) { finalScale -= num2 * 2f; }
+                float col = MathHelper.Lerp(0.8f, 0f, Math.Abs(finalScale - num3) * 10f);
+
+                Main.spriteBatch.Draw(
+                    ringTexture.Value,
+                    Player.Center - Main.screenPosition,
+                    new Rectangle(0, 400 * i, 400, 400),
+                    new Color(col, col, col, col / 2f),
+                    ringRot + MathHelper.Pi / 3f * i,
+                    new Vector2(200f),
+                    finalScale,
+                    SpriteEffects.None,
+                    0f);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace GoldenPotions
@@ -11,6 +12,7 @@ namespace GoldenPotions
         public bool goldenEndurance = false;
         public bool goldenFeatherfall = false;
         public bool goldenFishing = false;
+        public bool goldenInferno = false;
         public bool goldenNightOwl = false;
 
         public int goldenInfernoCounter = 0;
@@ -22,6 +24,7 @@ namespace GoldenPotions
             goldenEndurance = false;
             goldenFeatherfall = false;
             goldenFishing = false;
+            goldenInferno = false;
             goldenNightOwl = false;
         }
 
