@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
@@ -35,6 +36,16 @@ namespace GoldenPotions.Items.Potions
             Item.rare = ModContent.RarityType<GoldenRarity>();
             Item.value = Item.sellPrice(silver: 4);
             SafeDefaults();
+        }
+
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
+        {
+            Vector2 mouthPos = new Vector2(
+                player.position.X + (player.direction > 0 ? 14f : 2f) + Main.rand.NextFloat(5f),
+                player.position.Y + 13f + Main.rand.NextFloat(5f));
+
+            Dust.NewDustPerfect(mouthPos, DustID.FoodPiece, Vector2.Zero, 0, new Color(203, 179, 73));
+
         }
 
         public override void AddRecipes()
