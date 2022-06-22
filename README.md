@@ -44,8 +44,8 @@ This is pretty much the planned order of events, in terms of development.
 
 ⋮ **[ Done ]** ~~Recovery potions~~ \
 ⋮ **[ Done ]** ~~Buff potions → Duration upgrades~~\
-⋮ **[ WIP! ]** Buff potions → Effect upgrades \
-⋮ _Initial Release_ \
+⋮ **[ Done ]** ~~Buff potions → Effect upgrades~~ \
+⋮ **[ Done ]** ~~_Initial Release_~~ \
 ⋮ Flasks \
 ⋮ _Flasks Update_ \
 ⋮ Other potions \
