@@ -1,4 +1,5 @@
-# Golden Potions
+![Golden Potions](gh-assets/logo.png)
+
  Combine your favorite potions with gold critters to make powered-up variations in this Terraria mod!
  
  The idea is to spice up your next adventure - be that a boss, exploration, build, etc. - whenever you find a gold critter instead of just mindlessly selling it.
