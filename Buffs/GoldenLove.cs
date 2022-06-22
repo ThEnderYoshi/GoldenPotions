@@ -8,10 +8,7 @@ namespace GoldenPotions.Buffs
     internal class GoldenLove : GoldenBuff
     {
 
-        public override int OverwriteBuff
-        {
-            get { return BuffID.Lovestruck; }
-        }
+        public override int OverwriteBuff => BuffID.Lovestruck;
 
         public override void SetStaticDefaults()
         {
@@ -32,7 +29,7 @@ namespace GoldenPotions.Buffs
         private void SpawnHeart(IEntitySource source, Vector2 topLeft, Vector2 size)
         {
             // 331 == Lovestruck/Rapid Healing gore ID (not listed in GoreID)
-            Vector2 pos = Main.rand.NextVector2FromRectangle(new Rectangle(0, -4, (int)size.X, (int)size.Y));
+            Vector2 pos = Main.rand.NextVector2FromRectangle(new Rectangle(-8, -4, (int)size.X, (int)size.Y));
             int gore = Gore.NewGore(source, topLeft + pos, Vector2.Zero, 331);
             Main.gore[gore].velocity *= 0.3f;
         }

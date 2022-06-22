@@ -5,10 +5,7 @@ namespace GoldenPotions.Buffs
 {
     internal class GoldenBuilder : GoldenBuff
     {
-        public override int OverwriteBuff
-        {
-            get { return BuffID.Builder; }
-        }
+        public override int OverwriteBuff => BuffID.Builder;
 
         public override void SetStaticDefaults()
         {

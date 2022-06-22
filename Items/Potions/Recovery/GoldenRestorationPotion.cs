@@ -5,10 +5,7 @@ namespace GoldenPotions.Items.Potions.Recovery
 {
     internal class GoldenRestorationPotion : GoldenPotion
     {
-        public override int NormalPotion
-        {
-            get { return ItemID.RestorationPotion; }
-        }
+        public override int NormalPotion => ItemID.RestorationPotion;
 
         public override void SafeStaticDefaults()
         {

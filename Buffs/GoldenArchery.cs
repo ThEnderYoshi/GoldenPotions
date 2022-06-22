@@ -5,10 +5,7 @@ namespace GoldenPotions.Buffs
 {
     internal class GoldenArchery : GoldenBuff
     {
-        public override int OverwriteBuff
-        {
-            get { return BuffID.Archery; }
-        }
+        public override int OverwriteBuff => BuffID.Archery;
 
         public override void SetStaticDefaults()
         {

@@ -5,10 +5,7 @@ namespace GoldenPotions.Items.Potions
 {
     internal class GoldenGenderChangePotion : GoldenPotion
     {
-        public override int NormalPotion
-        {
-            get { return ItemID.GenderChangePotion; }
-        }
+        public override int NormalPotion => ItemID.GenderChangePotion;
 
         public override void SafeStaticDefaults()
         {

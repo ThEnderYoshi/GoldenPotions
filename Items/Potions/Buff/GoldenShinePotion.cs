@@ -7,10 +7,7 @@ namespace GoldenPotions.Items.Potions.Buff
 {
     internal class GoldenShinePotion : GoldenPotion
     {
-        public override int NormalPotion
-        {
-            get { return ItemID.ShinePotion; }
-        }
+        public override int NormalPotion => ItemID.ShinePotion;
 
         public override void SafeStaticDefaults()
         {
