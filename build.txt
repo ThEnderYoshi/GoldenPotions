@@ -1,4 +1,4 @@
 displayName = Golden Potions
 author = ThEnderYoshi
 version = 0.1
-buildIgnore = .gitattributes, .gitignore, README.md, *.csproj, *.user, obj\*, bin\*, .vs\*
+buildIgnore = .gitattributes, .gitignore, README.md, *.csproj, *.user, obj\*, bin\*, .vs\*, gh-assets\*
