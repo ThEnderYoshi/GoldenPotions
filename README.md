@@ -2,7 +2,7 @@
 
  Combine your favorite potions with gold critters to make powered-up variations in this Terraria mod!
  
- The idea is to spice up your next adventure - be that a boss, exploration, build, etc. - whenever you find a gold critter instead of just mindlessly selling it.
+ The idea is to spice up your next adventure - be that a boss, exploration, build, etc. - whenever you find a gold critter instead of just selling it.
  Since these critters are rare, you have to really think about which potion to upgrade, and when. _Strategy!_
  
 ---

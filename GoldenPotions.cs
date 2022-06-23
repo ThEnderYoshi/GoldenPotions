@@ -53,7 +53,7 @@ namespace GoldenPotions
         /// <param name="nextTier">The resulting potion.</param>
         private void PotionUpgrate(int prevTier, int nextTier)
         {
-            CreateRecipe(nextTier)
+            Recipe.Create(nextTier)
                     .AddIngredient(prevTier)
                     .AddRecipeGroup("GoldenPotions:GoldenCritters")
                     .AddTile(TileID.Bottles)
