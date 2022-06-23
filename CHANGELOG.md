@@ -4,7 +4,7 @@ Sorted from newest to oldest.
 Follows Semantic Versioning.
 So far, there has been **1** update.
 
-## v_\<latest\>_
+## \<latest\>
 - ...
 
 ## v1.0.0 [2022/06/23] - _Initial Release_
