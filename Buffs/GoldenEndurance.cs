@@ -15,8 +15,7 @@ namespace GoldenPotions.Buffs
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<GoldenPotionsPlayer>()
-                    .goldenEndurance = true;
+            player.endurance += 0.2f;
         }
     }
 }

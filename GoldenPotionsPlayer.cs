@@ -46,23 +46,6 @@ namespace GoldenPotions
         }
 
         // -- Modifiers -- //
-        //TODO: Modify all damage sources to account for Endurance++
-        //      (At least, all damage sources accounted for by regular Endurance)
-
-        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
-        {
-            ApplyGoldenEndurance(ref damage);
-        }
-
-        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
-        {
-            ApplyGoldenEndurance(ref damage);
-        }
-
-        public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
-        {
-            target.GetModPlayer<GoldenPotionsPlayer>().ApplyGoldenEndurance(ref damage);
-        }
 
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
@@ -91,16 +74,6 @@ namespace GoldenPotions
             if (goldenFeatherfall && !Player.controlDown && Player.velocity.Y > 0f)
             {
                 Player.velocity.Y = Player.controlUp ? 0.0001f : (1f / 6f);
-            }
-        }
-
-        // -- Private -- //
-
-        private void ApplyGoldenEndurance(ref int damage)
-        {
-            if (goldenEndurance)
-            {
-                damage = (int)(damage * 0.2f);
             }
         }
     }

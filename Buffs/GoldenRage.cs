@@ -16,7 +16,7 @@ namespace GoldenPotions.Buffs
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            player.GetCritChance(DamageClass.Generic) *= 1.2f;
+            player.GetCritChance(DamageClass.Generic) += 20;
         }
     }
 }
