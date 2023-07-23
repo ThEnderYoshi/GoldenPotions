@@ -10,11 +10,6 @@ namespace GoldenPotions.Items.Potions.Buff
     {
         public override int NormalPotion => ItemID.LovePotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Throw this to make someone REALLY fall in love");
-        }
-
         public override void PreDefaults()
         {
             Item.CloneDefaults(ItemID.LovePotion);

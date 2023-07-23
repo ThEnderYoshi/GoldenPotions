@@ -7,11 +7,6 @@ namespace GoldenPotions.Items.Potions.Recovery
     {
         public override int NormalPotion => ItemID.SuperHealingPotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("'This was a mistake'");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 32;

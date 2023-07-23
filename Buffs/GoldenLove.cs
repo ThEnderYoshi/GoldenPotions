@@ -7,14 +7,10 @@ namespace GoldenPotions.Buffs
 {
     internal class GoldenLove : GoldenBuff
     {
+        // Not in GoreID for some reason.
+        public const int HeartGore = 331;
 
         public override int OverwriteBuff => BuffID.Lovestruck;
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Lovestruck++");
-            Description.SetDefault("You are absolutely and completely consumed by love!");
-        }
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
@@ -26,11 +22,10 @@ namespace GoldenPotions.Buffs
             SpawnHeart(npc.GetSource_Buff(buffIndex), npc.position, npc.Size);
         }
 
-        private void SpawnHeart(IEntitySource source, Vector2 topLeft, Vector2 size)
+        private static void SpawnHeart(IEntitySource source, Vector2 topLeft, Vector2 size)
         {
-            // 331 == Lovestruck/Rapid Healing gore ID (not listed in GoreID)
             Vector2 pos = Main.rand.NextVector2FromRectangle(new Rectangle(-8, -4, (int)size.X, (int)size.Y));
-            int gore = Gore.NewGore(source, topLeft + pos, Vector2.Zero, 331);
+            int gore = Gore.NewGore(source, topLeft + pos, Vector2.Zero, HeartGore);
             Main.gore[gore].velocity *= 0.3f;
         }
     }

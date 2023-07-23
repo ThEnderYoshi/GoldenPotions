@@ -2,17 +2,16 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using GoldenPotions.Buffs;
+using Terraria.Localization;
 
 namespace GoldenPotions.Items.Potions.Buff
 {
     internal class GoldenRagePotion : GoldenPotion
     {
-        public override int NormalPotion => ItemID.RagePotion;
+        public const int PercentBonus = 20;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Increases critical chance by 20%");
-        }
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(PercentBonus);
+        public override int NormalPotion => ItemID.RagePotion;
 
         public override void SafeDefaults()
         {
@@ -20,7 +19,7 @@ namespace GoldenPotions.Items.Potions.Buff
             Item.height = 34;
 
             Item.buffType = ModContent.BuffType<GoldenRage>();
-            Item.buffTime = 14400; // 4 minutes
+            Item.buffTime = 4 * 60 * 60;
         }
     }
 }

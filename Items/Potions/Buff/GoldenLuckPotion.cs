@@ -7,11 +7,6 @@ namespace GoldenPotions.Items.Potions.Buff
     {
         public override int NormalPotion => ItemID.LuckPotionGreater;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Increases the Luck of the user");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 28;
@@ -19,7 +14,7 @@ namespace GoldenPotions.Items.Potions.Buff
             Item.value = Item.sellPrice(gold: 2);
 
             Item.buffType = BuffID.Lucky;
-            Item.buffTime = 72000; // 20 minutes
+            Item.buffTime = 20 * 60 * 60;
         }
     }
 }

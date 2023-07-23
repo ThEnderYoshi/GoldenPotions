@@ -7,11 +7,6 @@ namespace GoldenPotions.Items.Potions.Recovery
     {
         public override int NormalPotion => ItemID.RestorationPotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Greatly reduced potion cooldown");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 32;
@@ -26,7 +21,7 @@ namespace GoldenPotions.Items.Potions.Recovery
         {
             // Force Potion Sickness to last 22.5 seconds
             player.ClearBuff(BuffID.PotionSickness);
-            player.AddBuff(BuffID.PotionSickness, 1250); // 22.5 seconds
+            player.AddBuff(BuffID.PotionSickness, (int)(22.5f * 60));
         }
     }
 }

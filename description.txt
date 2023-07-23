@@ -2,6 +2,7 @@ Ever wish golden critters did more than just what they already do?
 Well this mod lets you use them to create upgraded variants of your favorite potions!
 
 CHANGELOG:
+- v1.1.0 : Ported to 1.4.4. Non '++' buff potions now have a clearer tooltip. Fixed Golden Gender Change Potion's dust code.
 - v1.0.2 : Fixed Endurance++ buff.
 - v1.0.1 : Fixed Rage++ buff.
 - v1.0.0 : Initial release. Added Most recovery potions, all buff potions and an unfinished 'other' potion.

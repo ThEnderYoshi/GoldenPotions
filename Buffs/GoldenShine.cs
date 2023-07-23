@@ -6,25 +6,20 @@ namespace GoldenPotions.Buffs
 {
     internal class GoldenShine : GoldenBuff
     {
-        public override int OverwriteBuff => BuffID.Shine;
+        private static readonly Vector3 CenterRGB = new(0.8f, 0.95f, 1f);
+        private static readonly Vector3 CrossRGB = new(1f, 0.9f, 0.7f);
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Shine++");
-            Description.SetDefault("Emitting a lot of light");
-        }
+        public override int OverwriteBuff => BuffID.Shine;
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            const int offset = 3; // In tiles
-            Vector2 pos = new Vector2(player.position.X / 16, player.position.Y / 16);
-
-            // "+" shape with 5 points of light
-            Lighting.AddLight((int)pos.X, (int)pos.Y,         0.8f, 0.95f, 1f);
-            Lighting.AddLight((int)pos.X, (int)pos.Y - offset, 1f, 0.9f, 0.7f);
-            Lighting.AddLight((int)pos.X - offset, (int)pos.Y, 1f, 0.9f, 0.7f);
-            Lighting.AddLight((int)pos.X, (int)pos.Y + offset, 1f, 0.9f, 0.7f);
-            Lighting.AddLight((int)pos.X + offset, (int)pos.Y, 1f, 0.9f, 0.7f);
+            const int offset = 3 * 16;
+            var position = new Vector2(player.Center.X, player.Center.Y);
+            Lighting.AddLight(position, CenterRGB);
+            Lighting.AddLight(position - Vector2.UnitY * offset, CrossRGB);
+            Lighting.AddLight(position - Vector2.UnitX * offset, CrossRGB);
+            Lighting.AddLight(position + Vector2.UnitY * offset, CrossRGB);
+            Lighting.AddLight(position + Vector2.UnitX * offset, CrossRGB);
         }
     }
 }

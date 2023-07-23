@@ -7,11 +7,6 @@ namespace GoldenPotions.Items.Potions.Recovery
     {
         public override int NormalPotion => ItemID.StrangeBrew;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("'It smells like that weird metallic smell'");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 26;

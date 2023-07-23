@@ -10,11 +10,6 @@ namespace GoldenPotions.Items.Potions.Buff
     {
         public override int NormalPotion => ItemID.StinkPotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Throw this to make someone smell incomprehensely horrible\nStacks with regular stinky");
-        }
-
         public override void PreDefaults()
         {
             Item.CloneDefaults(ItemID.StinkPotion);

@@ -17,8 +17,6 @@ namespace GoldenPotions.Items.Potions
 
         public override void SetStaticDefaults()
         {
-            CreativeItemSacrificesCatalog.Instance
-                    .SacrificeCountNeededByItemId[Type] = 1;
             SafeStaticDefaults();
         }
 
@@ -40,12 +38,11 @@ namespace GoldenPotions.Items.Potions
 
         public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
-            Vector2 mouthPos = new Vector2(
+            var mouthPos = new Vector2(
                 player.position.X + (player.direction > 0 ? 14f : 2f) + Main.rand.NextFloat(5f),
                 player.position.Y + 13f + Main.rand.NextFloat(5f));
 
             Dust.NewDustPerfect(mouthPos, DustID.FoodPiece, Vector2.Zero, 0, new Color(203, 179, 73));
-
         }
 
         public override void AddRecipes()

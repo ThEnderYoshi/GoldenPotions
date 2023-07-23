@@ -2,17 +2,16 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using GoldenPotions.Buffs;
+using Terraria.Localization;
 
 namespace GoldenPotions.Items.Potions.Buff
 {
     internal class GoldenLifeforcePotion : GoldenPotion
     {
-        public override int NormalPotion => ItemID.LifeforcePotion;
+        public const int PercentBonus = 40;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Increases max life by 40%");
-        }
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(PercentBonus);
+        public override int NormalPotion => ItemID.LifeforcePotion;
 
         public override void SafeDefaults()
         {
@@ -20,7 +19,7 @@ namespace GoldenPotions.Items.Potions.Buff
             Item.height = 34;
 
             Item.buffType = ModContent.BuffType<GoldenLifeforce>();
-            Item.buffTime = 28800; // 8 minutes
+            Item.buffTime = 8 * 60 * 60;
         }
     }
 }

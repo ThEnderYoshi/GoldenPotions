@@ -9,18 +9,13 @@ namespace GoldenPotions.Items.Potions.Buff
     {
         public override int NormalPotion => ItemID.TitanPotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Greatly increases knockback");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 44;
             Item.height = 30;
 
             Item.buffType = ModContent.BuffType<GoldenTitan>();
-            Item.buffTime = 28800; // 8 minutes
+            Item.buffTime = 8 * 20 * 20;
         }
     }
 }

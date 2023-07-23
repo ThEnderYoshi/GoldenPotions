@@ -13,8 +13,6 @@ namespace GoldenPotions.Buffs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Stinky--");
-            Description.SetDefault("You smell incomprehensively horrible");
             Main.debuff[Type] = true;
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }
@@ -31,7 +29,7 @@ namespace GoldenPotions.Buffs
         }
 
         // SpawnHearts more like SpawnFARTS gottem
-        private void SpawnFarts(IEntitySource source, Vector2 topLeft, Vector2 size)
+        private static void SpawnFarts(IEntitySource source, Vector2 topLeft, Vector2 size)
         {
             if (Main.rand.NextBool(4)) { return; }
             

@@ -2,17 +2,16 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using GoldenPotions.Buffs;
+using Terraria.Localization;
 
 namespace GoldenPotions.Items.Potions.Buff
 {
     internal class GoldenAmmoReservationPotion : GoldenPotion
     {
-        public override int NormalPotion => ItemID.AmmoReservationPotion;
+        public const int NoConsumeChance = 40;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("40% chance not to consume ammo");
-        }
+        public override int NormalPotion => ItemID.AmmoReservationPotion;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(NoConsumeChance);
 
         public override void SafeDefaults()
         {
@@ -20,7 +19,8 @@ namespace GoldenPotions.Items.Potions.Buff
             Item.height = 60;
 
             Item.buffType = ModContent.BuffType<GoldenAmmoReservation>();
-            Item.buffTime = 28800; // 8 minutes
+            //Item.buffTime = 28800; // 8 minutes
+            Item.buffTime = 8 * 60 * 60;
         }
     }
 }

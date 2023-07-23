@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GoldenPotions.Items.Potions.Buff;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace GoldenPotions
@@ -28,14 +28,11 @@ namespace GoldenPotions
             goldenNightOwl = false;
         }
 
-        // -- Testers -- //
-
         public override bool CanConsumeAmmo(Item weapon, Item ammo)
         {
-            return !goldenAmmoReservation || Main.rand.NextFloat() > 0.4f;
+            return !goldenAmmoReservation
+                || (Main.rand.NextFloat() > GoldenAmmoReservationPotion.NoConsumeChance * 0.01f);
         }
-
-        // -- Getters -- //
 
         public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
         {
@@ -45,18 +42,32 @@ namespace GoldenPotions
             }
         }
 
-        // -- Modifiers -- //
-
-        public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        public override void ModifyShootStats(
+            Item item,
+            ref Vector2 position,
+            ref Vector2 velocity,
+            ref int type,
+            ref int damage,
+            ref float knockback
+        )
         {
             if (goldenArchery)
             {
-                velocity *= 1.4f;
-                damage = (int)(damage * 1.4f);
+                float multiplier = 1.0f + GoldenArcheryPotion.SpeedAndDamageBonus * 0.1f;
+                velocity *= multiplier;
+                damage = (int)(damage * multiplier);
             }
         }
 
-        // -- Post Updates -- //
+        public override void PreUpdateMovement()
+        {
+            if (goldenFeatherfall && !Player.controlDown && Player.velocity.Y > 0f)
+            {
+                const float regularFallSpeed = 1f / 6f;
+                const float hoverFallSpeed = 0.0001f;
+                Player.velocity.Y = Player.controlUp ? hoverFallSpeed : regularFallSpeed;
+            }
+        }
 
         public override void PostUpdate()
         {
@@ -64,16 +75,6 @@ namespace GoldenPotions
             if (goldenInfernoCounter >= 180)
             {
                 goldenInfernoCounter = 0;
-            }
-        }
-
-        // -- Pre Updates -- //
-
-        public override void PreUpdateMovement()
-        {
-            if (goldenFeatherfall && !Player.controlDown && Player.velocity.Y > 0f)
-            {
-                Player.velocity.Y = Player.controlUp ? 0.0001f : (1f / 6f);
             }
         }
     }

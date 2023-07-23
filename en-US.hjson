@@ -1,0 +1,361 @@
+Mods: {
+	GoldenPotions: {
+		CommonItemTooltip.ExtendedDuration:
+			'''
+
+			Extended duration
+			'''
+
+		Buffs: {
+			GoldenAmmoReservation: {
+				DisplayName: Ammo Reservation++
+				Description: "{0}% chance to not consume ammo"
+			}
+
+			GoldenArchery: {
+				DisplayName: Archery++
+				Description: "{0}% increased arrow speed and damage"
+			}
+
+			GoldenBuilder: {
+				DisplayName: Builder++
+				Description: Greatly increased placement speed and range
+			}
+
+			GoldenEndurance: {
+				DisplayName: Endurance++
+				Description: "{0}% reduced damage"
+			}
+
+			GoldenFeatherfall: {
+				DisplayName: Featherfall++
+				Description: Hold UP to hover and DOWN to fall normally
+			}
+
+			GoldenFishing: {
+				DisplayName: Fishing++
+				Description: Greatly increased fishing power
+			}
+
+			GoldenInferno: {
+				DisplayName: Inferno++
+				Description: Nearby enemies are ignited with hellfire
+			}
+
+			GoldenIronskin: {
+				DisplayName: Ironskin++
+				Description: Increase defense by {0}
+			}
+
+			GoldenLifeforce: {
+				DisplayName: Lifeforce++
+				Description: 40% increased max life
+			}
+
+			GoldenLove: {
+				DisplayName: Lovestruck++
+				Description: You are absolutely and completely consumed by love!
+			}
+
+			GoldenMagicPower: {
+				DisplayName: Magic Power++
+				Description: "{0}% increased magic damage"
+			}
+
+			GoldenMining: {
+				DisplayName: Mining++
+				Description: "{0}% increased mining speed"
+			}
+
+			GoldenNightOwl: {
+				DisplayName: Night Owl++
+				Description: MY EYES
+			}
+
+			GoldenRage: {
+				DisplayName: Rage++
+				Description: "{0}% increased critical chance"
+			}
+
+			GoldenRegeneration: {
+				DisplayName: Regeneration++
+				Description: Provides greater life regeneration
+			}
+
+			GoldenShine: {
+				DisplayName: Shine++
+				Description: Emitting a lot of light
+			}
+
+			GoldenStink: {
+				DisplayName: Stinky--
+				Description: You smell incomprehensively horrible
+			}
+
+			GoldenSummoning: {
+				DisplayName: Summoning++
+				Description: Increased max number of minions
+			}
+
+			GoldenSwiftness: {
+				DisplayName: Swiftness++
+				Description: "{0}% increased movement speed"
+			}
+
+			GoldenTitan: {
+				DisplayName: Titan++
+				Description: Greatly increased knockback
+			}
+
+			GoldenWrath: {
+				DisplayName: Wrath++
+				Description: 20% increased damage
+			}
+		}
+
+		Items: {
+			# Potions/Buff/
+			
+			GoldenAmmoReservationPotion: {
+				DisplayName: Golden Ammo Reservation Potion
+				Tooltip: "{0}% chance not to consume ammo"
+			}
+
+			GoldenArcheryPotion: {
+				DisplayName: Golden Archery Potion
+				Tooltip: "{0}% increased arrow speed and damage"
+			}
+
+			GoldenBattlePotion: {
+				DisplayName: Golden Battle Potion
+				Tooltip: Increases enemy spawn rate{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenBuilderPotion: {
+				DisplayName: Golden Builder Potion
+				Tooltip: Increases placement speed and range
+			}
+
+			GoldenCalmingPotion: {
+				DisplayName: Golden Calming Potion
+				Tooltip: Decreases enemy spawn rate{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenCratePotion: {
+				DisplayName: Golden Crate Potion
+				Tooltip: Increases chance to get a crate{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenDangersensePotion: {
+				DisplayName: Golden Dangersense Potion
+				Tooltip: Allows you to see nearby danger sources{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenEndurancePotion: {
+				DisplayName: Golden Endurance Potion
+				Tooltip: Reduces damage taken by {0}%
+			}
+
+			GoldenFeatherfallPotion: {
+				DisplayName: Golden Featherfall Potion
+				Tooltip:
+					'''
+					Greatly slows falling speed
+					Hold UP to hover
+					'''
+			}
+
+			GoldenFishingPotion: {
+				DisplayName: Golden Fishing Potion
+				Tooltip: Greatly increases fishing power
+			}
+
+			GoldenFlipperPotion: {
+				DisplayName: Golden Flipper Potion
+				Tooltip: Lets you move swiftly in liquids{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenGillsPotion: {
+				DisplayName: Golden Gills Potion
+				Tooltip: Breathe water instead of air{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenGravitationPotion: {
+				DisplayName: Golden Gravitation Potion
+				Tooltip: Allows the control of gravity{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenHeartreachPotion: {
+				DisplayName: Golden Heartreach Potion
+				Tooltip: Increases pickup range for life hearts{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenHunterPotion: {
+				DisplayName: Golden Hunter Potion
+				Tooltip: Shows the location of enemies{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenInfernoPotion: {
+				DisplayName: Golden Inferno Potion
+				Tooltip: Ignites nearby enemies with hellfire
+			}
+
+			GoldenInvisibilityPotion: {
+				DisplayName: Golden Invisibility Potion
+				Tooltip: Grants invisibility and lowers the spawn rate of enemies{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenIronskinPotion: {
+				DisplayName: Golden Ironskin Potion
+				Tooltip: Increase defense by {0}
+			}
+
+			GoldenLifeforcePotion: {
+				DisplayName: Golden Lifeforce Potion
+				Tooltip: Increases max life by 40%
+			}
+
+			GoldenLovePotion: {
+				DisplayName: Golden Love Potion
+				Tooltip: Throw this to make someone REALLY fall in love
+			}
+
+			GoldenLuckPotion: {
+				DisplayName: Golden Luck Potion
+				Tooltip: Increases the Luck of the user{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenMagicPowerPotion: {
+				DisplayName: Golden Magic Power Potion
+				Tooltip: "{0}% increased magic damage"
+			}
+
+			GoldenManaRegenerationPotion: {
+				DisplayName: Golden Mana Regeneration Potion
+				Tooltip: Increased mana regeneration{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenMiningPotion: {
+				DisplayName: Golden Mining Potion
+				Tooltip: Increases mining speed by {0}%
+			}
+
+			GoldenNightOwlPotion: {
+				DisplayName: Golden Night Owl Potion
+				Tooltip:
+					'''
+					Grants full night vision
+					'Warning: Will make your map ugly as sin'
+					'''
+			}
+
+			GoldenObsidianSkinPotion: {
+				DisplayName: Golden Obsidian Skin Potion
+				Tooltip: Provides immunity to lava{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenRagePotion: {
+				DisplayName: Golden Rage Potion
+				Tooltip: Increases critical chance by {0}%
+			}
+
+			GoldenRegenerationPotion: {
+				DisplayName: Golden Regeneration Potion
+				Tooltip: Provides greater life regeneration
+			}
+
+			GoldenShinePotion: {
+				DisplayName: Golden Shine Potion
+				Tooltip: Emits an aura of bright light
+			}
+
+			GoldenSonarPotion: {
+				DisplayName: Golden Sonar Potion
+				Tooltip: Detects hooked fish{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenSpelunkerPotion: {
+				DisplayName: Golden Spelunker Potion
+				Tooltip: Shows the location of treasure and ore{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenStinkPotion: {
+				DisplayName: Golden Stink Potion
+				Tooltip:
+					'''
+					Throw this to make someone smell incomprehensely horrible
+					Stacks with regular Stinky
+					'''
+			}
+
+			GoldenSummoningPotion: {
+				DisplayName: Golden Summoning Potion
+				Tooltip: Increases your max number of minions by 2
+			}
+
+			GoldenSwiftnessPotion: {
+				DisplayName: Golden Swiftness Potion
+				Tooltip: "{0}% increased movement speed"
+			}
+
+			GoldenThornsPotion: {
+				DisplayName: Golden Thorns Potion
+				Tooltip: Attackers also take damage{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenTitanPotion: {
+				DisplayName: Golden Titan Potion
+				Tooltip: Greatly increases knockback
+			}
+
+			GoldenWarmthPotion: {
+				DisplayName: Golden Warmth Potion
+				Tooltip: Reduces damage from cold sources{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenWaterWalkingPotion: {
+				DisplayName: Golden Water Walking Potion
+				Tooltip: Allows the ability to walk on water{$CommonItemTooltip.ExtendedDuration}
+			}
+
+			GoldenWrathPotion: {
+				DisplayName: Golden Wrath Potion
+				Tooltip: Increases damage by 20%
+			}
+
+			# Potions/Recovery/
+			
+			GoldenHealingPotion: {
+				DisplayName: Golden Healing Potion
+				Tooltip: "'This was a mistake'"
+			}
+
+			GoldenManaPotion: {
+				DisplayName: Golden Mana Potion
+				Tooltip: ""
+			}
+
+			GoldenRestorationPotion: {
+				DisplayName: Golden Restoration Potion
+				Tooltip: Greatly reduced potion cooldown
+			}
+
+			GoldenStrangeBrew: {
+				DisplayName: Golden Strange Brew
+				Tooltip: It smells like that weird metallic smell
+			}
+
+			# Potions/
+			
+			GoldenGenderChangePotion: {
+				DisplayName: Golden Gender Change Potion
+				Tooltip: Changes your gender TWICE!
+			}
+		}
+
+		Projectiles: {
+			GoldenLovePotionProj.DisplayName: Golden Love Potion
+			GoldenStinkPotionProj.DisplayName: Golden Stink Potion
+		}
+	}
+}

@@ -13,71 +13,103 @@ namespace GoldenPotions.Buffs
     {
         public override int OverwriteBuff => BuffID.Inferno;
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Inferno++");
-            Description.SetDefault("Nearby enemies are ignited with hellfire");
-        }
-
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            //player.inferno = true; // <-- Evil >:3
             player.GetModPlayer<GoldenPotionsPlayer>().goldenInferno = true;
 
             const int damage = 10;
             const float maxDist = 200f;
-            bool flag = player.GetModPlayer<GoldenPotionsPlayer>().goldenInfernoCounter % 60 == 0;
+            bool shouldApplyDamage = player.GetModPlayer<GoldenPotionsPlayer>()
+                .goldenInfernoCounter % 60 == 0;
 
-            Lighting.AddLight((int)(player.position.X / 16f), (int)(player.position.Y / 16f), 0.9f, 0.8f, 0.2f);
+            Lighting.AddLight(
+                (int)(player.position.X / 16f),
+                (int)(player.position.Y / 16f),
+                0.9f,
+                0.8f,
+                0.2f
+            );
 
             if (player.whoAmI == Main.myPlayer)
             {
-                // Deal with NPCs
-                for (int k = 0; k < 200; k++)
+                DamageNPCs(player, damage, maxDist, shouldApplyDamage);
+                DamagePlayers(player, damage, maxDist, shouldApplyDamage);
+            }
+        }
+
+        private static void DamageNPCs(Player player, int damage, float maxDist, bool shouldApplyDamage)
+        {
+            for (int i = 0; i < 200; i++)
+            {
+                NPC target = Main.npc[i];
+                if (!CanDamageNPC(player, maxDist, target))
                 {
-                    NPC target = Main.npc[k];
-                    if (target.active && !target.friendly && target.damage > 0
-                            && !target.dontTakeDamage && !target.buffImmune[BuffID.OnFire3]
-                            //FIXME: Find alternative(?) to Player.this.CanNPCBeHitByPlayerOrPlayerProjectile
-                            && Vector2.Distance(player.Center, target.Center) <= maxDist)
-                    {
-                        if (!target.HasBuff(BuffID.OnFire3))
-                        {
-                            target.AddBuff(BuffID.OnFire3, 120); // 2 seconds
-                        }
-                        if (flag)
-                        {
-                            player.ApplyDamageToNPC(target, damage, 0f, 0, false);
-                        }
-                    }
+                    continue;
                 }
-                // Deal with PvP
-                if (player.hostile)
+
+                if (!target.HasBuff(BuffID.OnFire3))
                 {
-                    for (int l = 0; l < 255; l++)
-                    {
-                        Player target = Main.player[l];
-                        if (target != player && target.active && !target.dead && target.hostile && !target.buffImmune[BuffID.OnFire3]
-                                && (target.team != player.team || target.team == 0)
-                                && Vector2.Distance(player.Center, target.Center) <= maxDist)
-                        {
-                            if (player.HasBuff(BuffID.OnFire3))
-                            {
-                                target.AddBuff(BuffID.OnFire3, 120); // 2 seconds
-                            }
-                            if (flag)
-                            {
-                                target.Hurt(PlayerDeathReason.LegacyEmpty(), damage, 0);
-                                if (Main.netMode != NetmodeID.SinglePlayer)
-                                {
-                                    PlayerDeathReason reason = PlayerDeathReason.ByOther(16);
-                                    NetMessage.SendPlayerHurt(l, reason, damage, 0, false, true, -1);
-                                }
-                            }
-                        }
-                    }
+                    target.AddBuff(BuffID.OnFire3, 2 * 60);
+                }
+
+                if (shouldApplyDamage)
+                {
+                    player.ApplyDamageToNPC(target, damage, 0f, 0, false);
                 }
             }
+        }
+
+        private static void DamagePlayers(Player player, int damage, float maxDist, bool shouldApplyDamage)
+        {
+            if (!player.hostile) return;
+
+            for (int i = 0; i < 255; i++)
+            {
+                Player target = Main.player[i];
+                if (!CanDamagePlayer(player, maxDist, target)) continue;
+
+                if (player.HasBuff(BuffID.OnFire3))
+                {
+                    target.AddBuff(BuffID.OnFire3, 120); // 2 seconds
+                }
+
+                if (shouldApplyDamage)
+                {
+                    target.Hurt(PlayerDeathReason.LegacyEmpty(), damage, 0);
+                    if (Main.netMode == NetmodeID.SinglePlayer) continue;
+
+                    var info = new Player.HurtInfo
+                    {
+                        Damage = damage,
+                        DamageSource = PlayerDeathReason.ByOther(16),
+                        PvP = true,
+                        DustDisabled = true,
+                    };
+                    NetMessage.SendPlayerHurt(i, info);
+                }
+            }
+        }
+
+        private static bool CanDamageNPC(Player damager, float maxDist, NPC target)
+        {
+            return target.active
+                && !target.friendly
+                && target.damage > 0
+                && !target.dontTakeDamage
+                && !target.buffImmune[BuffID.OnFire3]
+                //FIXME: Find alternative(?) to Player.this.CanNPCBeHitByPlayerOrPlayerProjectile
+                && Vector2.Distance(damager.Center, target.Center) <= maxDist;
+        }
+
+        private static bool CanDamagePlayer(Player damager, float maxDist, Player target)
+        {
+            return target != damager
+                && target.active
+                && !target.dead
+                && target.hostile
+                && !target.buffImmune[BuffID.OnFire3]
+                && (target.team != damager.team || target.team == 0)
+                && Vector2.Distance(damager.Center, target.Center) <= maxDist;
         }
     }
 
@@ -97,10 +129,7 @@ namespace GoldenPotions.Buffs
 
         private void LoadRing()
         {
-            if (ringTexture == null)
-            {
-                ringTexture = ModContent.Request<Texture2D>("GoldenPotions/Buffs/GoldenInferno_Ring");
-            }
+            ringTexture ??= ModContent.Request<Texture2D>("GoldenPotions/Buffs/GoldenInferno_Ring");
         }
 
         private void DrawRing()
@@ -112,8 +141,13 @@ namespace GoldenPotions.Buffs
             float num3 = 0.9f;
 
             // Scale
-            if (!Main.gamePaused) { ringScale += 0.004f; }
-            if (ringScale < 1f) { scale = ringScale; }
+            if (!Main.gamePaused) {
+                ringScale += 0.004f;
+            }
+
+            if (ringScale < 1f) {
+                scale = ringScale;
+            }
             else
             {
                 ringScale = 0.8f;
@@ -129,19 +163,22 @@ namespace GoldenPotions.Buffs
             for (int i = 0; i < 3; i++)
             {
                 float finalScale = scale + num2 * i;
-                if (finalScale > 1f) { finalScale -= num2 * 2f; }
-                float col = MathHelper.Lerp(0.8f, 0f, Math.Abs(finalScale - num3) * 10f);
+                if (finalScale > 1f) {
+                    finalScale -= num2 * 2f;
+                }
+                float color = MathHelper.Lerp(0.8f, 0f, Math.Abs(finalScale - num3) * 10f);
 
                 Main.spriteBatch.Draw(
                     ringTexture.Value,
                     Player.Center - Main.screenPosition,
                     new Rectangle(0, 400 * i, 400, 400),
-                    new Color(col, col, col, col / 2f),
+                    new Color(color, color, color, color * 0.5f),
                     ringRot + MathHelper.Pi / 3f * i,
                     new Vector2(200f),
                     finalScale,
                     SpriteEffects.None,
-                    0f);
+                    layerDepth: 0f
+                );
             }
         }
     }

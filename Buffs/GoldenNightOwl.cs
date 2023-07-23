@@ -8,17 +8,9 @@ namespace GoldenPotions.Buffs
     {
         public override int OverwriteBuff => BuffID.NightOwl;
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Night Owl++");
-            Description.SetDefault("MY EYES");
-        }
-
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            // See GoldenPotionsPlayer; GoldenNightOwlGlobalWall
-            player.GetModPlayer<GoldenPotionsPlayer>()
-                    .goldenNightOwl = true;
+            player.GetModPlayer<GoldenPotionsPlayer>().goldenNightOwl = true;
         }
     }
 

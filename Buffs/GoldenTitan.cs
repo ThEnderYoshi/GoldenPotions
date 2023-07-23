@@ -8,15 +8,9 @@ namespace GoldenPotions.Buffs
     {
         public override int OverwriteBuff => BuffID.Titan;
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Titan++");
-            Description.SetDefault("Greatly increased knockback");
-        }
-
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            player.GetKnockback(DamageClass.Generic) *= 2f; // +100% knockback
+            player.GetKnockback(DamageClass.Generic) *= 2f;
         }
     }
 }

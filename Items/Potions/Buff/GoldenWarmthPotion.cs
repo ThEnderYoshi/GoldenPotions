@@ -7,18 +7,13 @@ namespace GoldenPotions.Items.Potions.Buff
     {
         public override int NormalPotion => ItemID.WarmthPotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Reduces damage from cold sources");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 32;
             Item.height = 30;
 
             Item.buffType = BuffID.Warmth;
-            Item.buffTime = 108000; // 30 minutes
+            Item.buffTime = 30 * 60 * 60;
         }
     }
 }

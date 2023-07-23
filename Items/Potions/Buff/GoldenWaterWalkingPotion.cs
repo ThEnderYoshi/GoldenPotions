@@ -7,18 +7,13 @@ namespace GoldenPotions.Items.Potions.Buff
     {
         public override int NormalPotion => ItemID.WaterWalkingPotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Allows the ability to walk on water");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 28;
             Item.height = 34;
 
             Item.buffType = BuffID.WaterWalking;
-            Item.buffTime = 72000; // 20 minutes
+            Item.buffTime = 20 * 60 * 60;
         }
     }
 }

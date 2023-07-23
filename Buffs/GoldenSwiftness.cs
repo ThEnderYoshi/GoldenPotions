@@ -1,21 +1,18 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
+using static GoldenPotions.Items.Potions.Buff.GoldenSwiftnessPotion;
 
 namespace GoldenPotions.Buffs
 {
     internal class GoldenSwiftness : GoldenBuff
     {
+        public override LocalizedText Description => base.Description.WithFormatArgs(PercentBonus);
         public override int OverwriteBuff => BuffID.Swiftness;
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Swiftness++");
-            Description.SetDefault("50% increased movement speed");
-        }
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            player.moveSpeed += 0.5f;
+            player.moveSpeed += PercentBonus * 0.01f;
         }
     }
 }

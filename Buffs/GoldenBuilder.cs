@@ -7,12 +7,6 @@ namespace GoldenPotions.Buffs
     {
         public override int OverwriteBuff => BuffID.Builder;
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Builder++");
-            Description.SetDefault("Greatly increased placement speed and range");
-        }
-
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
             player.tileSpeed *= 1.5f;

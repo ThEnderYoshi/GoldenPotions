@@ -9,10 +9,6 @@ namespace GoldenPotions.Projectiles
 {
     internal class GoldenStinkPotionProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Golden Stink Potion");
-        }
 
         public override void SetDefaults()
         {
@@ -25,15 +21,14 @@ namespace GoldenPotions.Projectiles
             SoundEngine.PlaySound(SoundID.Shatter, Projectile.position);
             SoundEngine.PlaySound(SoundID.Item16, Projectile.position);
 
-            // Dusts
             for (int i = 0; i < 5; i++)
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Glass);
             }
-            // Gores
+
             for (int i = 0; i < 25; i++)
             {
-                Vector2 direction = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 11));
+                var direction = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 11));
                 direction.Normalize();
                 direction *= 0.4f;
                 int gore = Gore.NewGore(
@@ -45,14 +40,17 @@ namespace GoldenPotions.Projectiles
                 Main.gore[gore].sticky = false;
             }
 
-            // Inflict Stinky-- to...
+            InflictBuff();
+        }
+
+        private void InflictBuff()
+        {
             if (Projectile.owner == Main.myPlayer)
             {
-                const int BuffTime = 3600; // 1 minute
+                const int BuffTime = 60 * 60;
                 const float Radius = 80f;
                 int buffID = ModContent.BuffType<GoldenStink>();
 
-                // ...players
                 for (int i = 0; i < 255; i++)
                 {
                     Player player = Main.player[i];
@@ -61,7 +59,7 @@ namespace GoldenPotions.Projectiles
                         player.AddBuff(buffID, BuffTime);
                     }
                 }
-                // ...NPCs
+
                 for (int i = 0; i < 200; i++)
                 {
                     NPC npc = Main.npc[i];

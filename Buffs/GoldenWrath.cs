@@ -1,22 +1,19 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
+using static GoldenPotions.Items.Potions.Buff.GoldenWrathPotion;
 
 namespace GoldenPotions.Buffs
 {
     internal class GoldenWrath : GoldenBuff
     {
+        public override LocalizedText Description => base.Description.WithFormatArgs(PercentBoost);
         public override int OverwriteBuff => BuffID.Titan;
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Wrath++");
-            Description.SetDefault("20% increased damage");
-        }
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            player.GetDamage(DamageClass.Generic) *= 1.2f;
+            player.GetDamage(DamageClass.Generic) *= 1f + PercentBoost * 0.01f;
         }
     }
 }

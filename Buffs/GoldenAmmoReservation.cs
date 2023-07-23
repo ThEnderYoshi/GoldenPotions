@@ -1,17 +1,14 @@
-﻿using Terraria;
+﻿using GoldenPotions.Items.Potions.Buff;
+using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace GoldenPotions.Buffs
 {
     internal class GoldenAmmoReservation : GoldenBuff
     {
+        public override LocalizedText Description => base.Description.WithFormatArgs(GoldenAmmoReservationPotion.NoConsumeChance);
         public override int OverwriteBuff => BuffID.AmmoReservation;
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Ammo Reservation++");
-            Description.SetDefault("40% chance to not consume ammo");
-        }
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {

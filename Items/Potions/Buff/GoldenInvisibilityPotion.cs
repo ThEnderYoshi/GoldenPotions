@@ -7,18 +7,13 @@ namespace GoldenPotions.Items.Potions.Buff
     {
         public override int NormalPotion => ItemID.InvisibilityPotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Grants invisibility and lowers the spawn rate of enemies");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 28;
             Item.height = 30;
 
             Item.buffType = BuffID.Invisibility;
-            Item.buffTime = 21600; // 6 minutes
+            Item.buffTime = 6 * 60 * 60;
         }
     }
 }

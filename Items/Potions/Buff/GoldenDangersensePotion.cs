@@ -7,18 +7,13 @@ namespace GoldenPotions.Items.Potions.Buff
     {
         public override int NormalPotion => ItemID.TrapsightPotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Allows you to see nearby danger sources");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 28;
             Item.height = 30;
 
             Item.buffType = BuffID.Dangersense;
-            Item.buffTime = 72000; // 20 minutes
+            Item.buffTime = 20 * 60 * 60;
         }
     }
 }

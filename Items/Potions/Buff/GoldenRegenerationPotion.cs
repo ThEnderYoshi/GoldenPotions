@@ -9,18 +9,13 @@ namespace GoldenPotions.Items.Potions.Buff
     {
         public override int NormalPotion => ItemID.RegenerationPotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Provides greater life regeneration");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 12;
             Item.height = 30;
 
             Item.buffType = ModContent.BuffType<GoldenRegeneration>();
-            Item.buffTime = 28800; // 8 minutes
+            Item.buffTime = 8 * 60 * 60;
         }
     }
 }

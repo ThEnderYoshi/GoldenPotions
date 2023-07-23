@@ -1,18 +1,17 @@
 ﻿using GoldenPotions.Buffs;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace GoldenPotions.Items.Potions.Buff
 {
     internal class GoldenSwiftnessPotion : GoldenPotion
     {
-        public override int NormalPotion => ItemID.SwiftnessPotion;
+        public const int PercentBonus = 50;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("50% increased movement speed");
-        }
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(PercentBonus);
+        public override int NormalPotion => ItemID.SwiftnessPotion;
 
         public override void SafeDefaults()
         {
@@ -20,7 +19,7 @@ namespace GoldenPotions.Items.Potions.Buff
             Item.height = 32;
 
             Item.buffType = ModContent.BuffType<GoldenSwiftness>();
-            Item.buffTime = 28800; // 8 minutes
+            Item.buffTime = 8 * 20 * 20;
         }
     }
 }

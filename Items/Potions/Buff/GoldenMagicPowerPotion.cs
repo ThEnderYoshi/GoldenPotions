@@ -2,17 +2,16 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using GoldenPotions.Buffs;
+using Terraria.Localization;
 
 namespace GoldenPotions.Items.Potions.Buff
 {
     internal class GoldenMagicPowerPotion : GoldenPotion
     {
-        public override int NormalPotion => ItemID.MagicPowerPotion;
+        public const int PercentBonus = 40;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("40% increased magic damage");
-        }
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(PercentBonus);
+        public override int NormalPotion => ItemID.MagicPowerPotion;
 
         public override void SafeDefaults()
         {
@@ -20,7 +19,7 @@ namespace GoldenPotions.Items.Potions.Buff
             Item.height = 34;
 
             Item.buffType = ModContent.BuffType<GoldenMagicPower>();
-            Item.buffTime = 14400; // 4 minutes
+            Item.buffTime = 4 * 60 * 60;
         }
     }
 }

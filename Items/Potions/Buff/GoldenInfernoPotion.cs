@@ -9,18 +9,13 @@ namespace GoldenPotions.Items.Potions.Buff
     {
         public override int NormalPotion => ItemID.InfernoPotion;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Ignites nearby enemies with hellfire");
-        }
-
         public override void SafeDefaults()
         {
             Item.width = 36;
             Item.height = 40;
 
             Item.buffType = ModContent.BuffType<GoldenInferno>();
-            Item.buffTime = 14400; // 4 minutes
+            Item.buffTime = 4 * 60 * 60;
         }
     }
 }

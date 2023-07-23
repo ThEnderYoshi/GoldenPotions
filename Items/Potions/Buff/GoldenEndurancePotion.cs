@@ -2,17 +2,16 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using GoldenPotions.Buffs;
+using Terraria.Localization;
 
 namespace GoldenPotions.Items.Potions.Buff
 {
     internal class GoldenEndurancePotion : GoldenPotion
     {
-        public override int NormalPotion => ItemID.EndurancePotion;
+        public const int DamageReduction = 20;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Reduces damage taken by 20%");
-        }
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageReduction);
+        public override int NormalPotion => ItemID.EndurancePotion;
 
         public override void SafeDefaults()
         {
@@ -20,7 +19,7 @@ namespace GoldenPotions.Items.Potions.Buff
             Item.height = 40;
 
             Item.buffType = ModContent.BuffType<GoldenEndurance>();
-            Item.buffTime = 14400; // 4 minutes
+            Item.buffTime = 4 * 60 * 60;
         }
     }
 }

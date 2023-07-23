@@ -2,17 +2,16 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using GoldenPotions.Buffs;
+using Terraria.Localization;
 
 namespace GoldenPotions.Items.Potions.Buff
 {
     internal class GoldenMiningPotion : GoldenPotion
     {
-        public override int NormalPotion => ItemID.MiningPotion;
+        public const int SpeedBoost = 50;
 
-        public override void SafeStaticDefaults()
-        {
-            Tooltip.SetDefault("Increases mining speed by 50%");
-        }
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SpeedBoost);
+        public override int NormalPotion => ItemID.MiningPotion;
 
         public override void SafeDefaults()
         {
@@ -20,7 +19,7 @@ namespace GoldenPotions.Items.Potions.Buff
             Item.height = 30;
 
             Item.buffType = ModContent.BuffType<GoldenMining>();
-            Item.buffTime = 28800; // 8 minutes
+            Item.buffTime = 8 * 60 * 60;
         }
     }
 }
