@@ -2,7 +2,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using GoldenPotions.Rarities;
 
 namespace GoldenPotions.Items.Potions
@@ -15,11 +14,6 @@ namespace GoldenPotions.Items.Potions
         /// </summary>
         abstract public int NormalPotion { get; }
 
-        public override void SetStaticDefaults()
-        {
-            SafeStaticDefaults();
-        }
-
         public override void SetDefaults()
         {
             PreDefaults();
@@ -29,7 +23,7 @@ namespace GoldenPotions.Items.Potions
             Item.useTurn = true;
             Item.UseSound = SoundID.Item3;
 
-            Item.maxStack = 30;
+            Item.maxStack = 9999;
             Item.consumable = true;
             Item.rare = ModContent.RarityType<GoldenRarity>();
             Item.value = Item.sellPrice(silver: 4);
@@ -48,20 +42,17 @@ namespace GoldenPotions.Items.Potions
         public override void AddRecipes()
         {
             CreateRecipe()
-                    .AddIngredient(NormalPotion)
-                    .AddRecipeGroup("GoldenPotions:GoldenCritters")
-                    .AddTile(TileID.Bottles)
-                    .Register();
+                .AddIngredient(NormalPotion)
+                .AddRecipeGroup("GoldenPotions:GoldenCritters")
+                .AddTile(TileID.Bottles)
+                .Register();
         }
 
-        /// <summary>
-        /// Use this instead of <see cref="SetStaticDefaults"/>.
-        /// </summary>
-        public virtual void SafeStaticDefaults() { }
         /// <summary>
         /// Called at the start of <see cref="SetDefaults"/>.
         /// </summary>
         public virtual void PreDefaults() { }
+
         /// <summary>
         /// <para>Use this instead of <see cref="SetDefaults"/>.</para>
         /// <para>You mainly just need to set Item.width,

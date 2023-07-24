@@ -1,5 +1,5 @@
 displayName = Golden Potions
 author = ThEnderYoshi
-version = 1.1.0
+version = 1.2.0
 homepage = https://forums.terraria.org/index.php?threads/golden-potions.113105/
 buildIgnore = .gitattributes, .gitignore, *.md, *.ase, *.csproj, *.user, obj\*, bin\*, .vs\*, gh-assets\*

@@ -3,7 +3,12 @@
 Sorted from newest to oldest.
 
 Follows Semantic Versioning.
-So far, there have been **4** updates.
+So far, there have been **5** updates.
+
+## v1.2.0 [2023-07-23]
+
+- **Changed**: Golden Potions now stack to 9999.
+- **Fixed** Archery++ affecting all projectile-creating weapons.
 
 ## v1.1.0 [2023-07-23]
 

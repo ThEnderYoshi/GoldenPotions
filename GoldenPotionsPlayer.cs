@@ -1,6 +1,7 @@
 ﻿using GoldenPotions.Items.Potions.Buff;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace GoldenPotions
@@ -51,7 +52,7 @@ namespace GoldenPotions
             ref float knockback
         )
         {
-            if (goldenArchery)
+            if (goldenArchery && item.useAmmo == AmmoID.Arrow)
             {
                 float multiplier = 1.0f + GoldenArcheryPotion.SpeedAndDamageBonus * 0.1f;
                 velocity *= multiplier;
