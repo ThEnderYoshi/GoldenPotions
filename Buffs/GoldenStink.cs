@@ -32,9 +32,13 @@ namespace GoldenPotions.Buffs
         private static void SpawnFarts(IEntitySource source, Vector2 topLeft, Vector2 size)
         {
             if (Main.rand.NextBool(4)) { return; }
-            
-            Vector2 pos = Main.rand.NextVector2FromRectangle(new Rectangle(-16, -4, (int)size.X, (int)size.Y));
-            int gore = Gore.NewGore(source, topLeft + pos, Vector2.Zero, Main.rand.Next(436, 438), 0.5f);
+
+            var rect = new Rectangle(-16, -4, (int)size.X, (int)size.Y);
+            Vector2 pos = Main.rand.NextVector2FromRectangle(rect);
+
+            int gore =
+                Gore.NewGore(source, topLeft + pos, Vector2.Zero, Main.rand.Next(436, 438), 0.5f);
+
             Main.gore[gore].velocity *= 0.3f;
             Main.gore[gore].alpha = 127;
         }
@@ -49,7 +53,13 @@ namespace GoldenPotions.Buffs
             goldenStink = false;
         }
 
-        public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+        public override void DrawEffects(
+            PlayerDrawSet drawInfo,
+            ref float r,
+            ref float g,
+            ref float b,
+            ref float a,
+            ref bool fullBright)
         {
             if (goldenStink)
             {

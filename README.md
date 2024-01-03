@@ -7,12 +7,6 @@
  build, etc. - whenever you find a gold critter instead of just selling it.
  Since these critters are rare, you have to really think about which potion to
  upgrade, and when. _Strategy!_
- 
----
-
-![](/Buffs/GoldenBuilder.png)
-***This mod is currently in a pre-release state.
-Feedback is more than appreciated!***
 
 ---
 
@@ -60,15 +54,18 @@ just don't have the know-how to make a buffed version of the buff.
 
 This is pretty much the planned order of events, in terms of development.
 
-- **[ Done ]** ~~Recovery potions~~ \
-- **[ Done ]** ~~Buff potions → Duration upgrades~~\
-- **[ Done ]** ~~Buff potions → Effect upgrades~~ \
-- **[ Done ]** ~~_Initial Release_~~ \
-- Flasks \
-- _Flasks Update_ \
-- Other potions \
+- **[ Done ]** ~~Recovery potions~~
+- **[ Done ]** ~~Buff potions → Duration upgrades~~
+- **[ Done ]** ~~Buff potions → Effect upgrades~~
+- **[ Done ]** ~~_Initial Release_~~
+- Food
+- _Food Update_
+- Flasks
+- _Flasks Update_
+- Other potions
 - _Full Release_
 
 <!-- References -->
+
 [Issues]: https://github.com/ThEnderYoshi/GoldenPotions/issues
 [on this spreadsheet]: https://docs.google.com/spreadsheets/d/13Rf7amRmZ5BQ9ff4huThX_5zWy-YvyDq9t4nt_nuqg8/edit?usp=sharing

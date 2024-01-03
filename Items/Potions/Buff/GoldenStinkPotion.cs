@@ -19,7 +19,6 @@ namespace GoldenPotions.Items.Potions.Buff
         {
             Item.UseSound = SoundID.Item1;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.maxStack = 99;
             Item.shoot = ModContent.ProjectileType<GoldenStinkPotionProj>();
         }
 

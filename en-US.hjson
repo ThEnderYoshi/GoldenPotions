@@ -5,6 +5,7 @@ Mods: {
 
 			Extended duration
 			'''
+		RecipeGroups.AnyGoldenCritter: "{$LegacyMisc.37} Golden Critter"
 
 		Buffs: {
 			GoldenAmmoReservation: {

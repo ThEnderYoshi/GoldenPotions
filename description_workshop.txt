@@ -9,6 +9,7 @@ Well this mod lets you use them to create upgraded variants of your favorite pot
 [hr][/hr]
 
 [b]CHANGELOG:[/b]
+- v1.3.0 : Ported to TMod Dec 2024 Update. Fixed Golden Love & Stink potions having the wrong stack size.
 - v1.2.0 : Golden Potions now stack to 9999. Fixed Archery++ affecting all projectile-creating weapons.
 - v1.1.0 : Ported to 1.4.4. Non '++' buff potions now have a clearer tooltip. Fixed Golden Gender Change Potion's dust code.
 - v1.0.2 : Fixed Endurance++ buff.

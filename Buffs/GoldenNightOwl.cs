@@ -16,7 +16,13 @@ namespace GoldenPotions.Buffs
 
     internal class GoldenNightOwlGlobalWall : GlobalWall
     {
-        public override void ModifyLight(int i, int j, int type, ref float r, ref float g, ref float b)
+        public override void ModifyLight(
+            int i,
+            int j,
+            int type,
+            ref float r,
+            ref float g,
+            ref float b)
         {
             // Based on HERO's Mod's Light Hack service.
             // Pretty hacky; there's gotta be a better way to do fullbright...
@@ -25,6 +31,7 @@ namespace GoldenPotions.Buffs
             for (int k = 0; k < 255; k++)
             {
                 Player player = Main.player[k];
+
                 if (k == Main.myPlayer && player.GetModPlayer<GoldenPotionsPlayer>().goldenNightOwl)
                 {
                     r = 1;

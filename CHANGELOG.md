@@ -3,7 +3,14 @@
 Sorted from newest to oldest.
 
 Follows Semantic Versioning.
-So far, there have been **5** updates.
+So far, there have been **6** updates.
+
+## v1.3.0 [2024-01-03]
+
+- **Ported** the mod to TMod's `January 2024 Stable Update`.
+- **Changed**: The text `Any Golden Critter` is now a fully localized string.
+- **Fixed** Golden Love and Golden Stink Potions having the incorrect	
+  stack size.
 
 ## v1.2.0 [2023-07-23]
 

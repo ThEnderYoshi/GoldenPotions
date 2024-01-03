@@ -24,7 +24,9 @@ namespace GoldenPotions.Buffs
 
         private static void SpawnHeart(IEntitySource source, Vector2 topLeft, Vector2 size)
         {
-            Vector2 pos = Main.rand.NextVector2FromRectangle(new Rectangle(-8, -4, (int)size.X, (int)size.Y));
+            Vector2 pos =
+                Main.rand.NextVector2FromRectangle(new Rectangle(-8, -4, (int)size.X, (int)size.Y));
+
             int gore = Gore.NewGore(source, topLeft + pos, Vector2.Zero, HeartGore);
             Main.gore[gore].velocity *= 0.3f;
         }

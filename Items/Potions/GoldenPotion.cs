@@ -14,6 +14,8 @@ namespace GoldenPotions.Items.Potions
         /// </summary>
         abstract public int NormalPotion { get; }
 
+        private static readonly Color _drinkDustColor = new(203, 179, 73);
+
         public override void SetDefaults()
         {
             PreDefaults();
@@ -36,7 +38,7 @@ namespace GoldenPotions.Items.Potions
                 player.position.X + (player.direction > 0 ? 14f : 2f) + Main.rand.NextFloat(5f),
                 player.position.Y + 13f + Main.rand.NextFloat(5f));
 
-            Dust.NewDustPerfect(mouthPos, DustID.FoodPiece, Vector2.Zero, 0, new Color(203, 179, 73));
+            Dust.NewDustPerfect(mouthPos, DustID.FoodPiece, Vector2.Zero, 0, _drinkDustColor);
         }
 
         public override void AddRecipes()

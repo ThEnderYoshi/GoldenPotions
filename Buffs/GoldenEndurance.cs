@@ -7,7 +7,9 @@ namespace GoldenPotions.Buffs
 {
     internal class GoldenEndurance : GoldenBuff
     {
-        public override LocalizedText Description => base.Description.WithFormatArgs(DamageReduction);
+        public override LocalizedText Description =>
+            base.Description.WithFormatArgs(DamageReduction);
+
         public override int OverwriteBuff => BuffID.Endurance;
 
         public override void SafeUpdate(Player player, ref int buffIndex)

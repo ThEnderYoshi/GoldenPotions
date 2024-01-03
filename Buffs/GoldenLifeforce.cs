@@ -7,7 +7,9 @@ namespace GoldenPotions.Buffs
 {
     internal class GoldenLifeforce : GoldenBuff
     {
-        public override LocalizedText Description => base.Description.WithFormatArgs(PercentBonus);
+        public override LocalizedText Description =>
+            base.Description.WithFormatArgs(PercentBonus);
+
         public override int OverwriteBuff => BuffID.Lifeforce;
 
         public override void SafeUpdate(Player player, ref int buffIndex)

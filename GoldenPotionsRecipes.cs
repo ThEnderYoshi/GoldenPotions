@@ -10,11 +10,15 @@ namespace GoldenPotions
     /// </summary>
     internal class GoldenPotionsRecipes : ModSystem
     {
+
         public override void AddRecipeGroups()
         {
-            const string anyKey = "LegacyMisc.37";
+            //const string anyKey = "LegacyMisc.37";
+            LocalizedText groupName =
+                Language.GetText($"Mods.{nameof(GoldenPotions)}.RecipeGroups.AnyGoldenCritter");
 
-            var group = new RecipeGroup(() => $"{Language.GetTextValue(anyKey)} Golden Critter", new int[]
+            //var group = new RecipeGroup(() => $"{Language.GetTextValue(anyKey)} Golden Critter", new int[]
+            var group = new RecipeGroup(() => groupName.Value, new int[]
             {
                 ItemID.GoldBunny,
                 ItemID.GoldBird,

@@ -36,7 +36,7 @@ namespace GoldenPotions.Items.Potions
         private void SpawnGenderDust(Player player, int dustType, float x, float t)
         {
             const float offset = 44f;
-            var dustPosition = new Vector2(x, offset * (1f - t) - offset + player.height * 0.5f)
+            Vector2 dustPosition = new Vector2(x, offset * (1f - t) - offset + player.height * 0.5f)
                 + player.Center;
 
             Dust dust = Main.dust[Dust.NewDust(dustPosition, 0, 0, dustType, 0f, 0f, 100)];

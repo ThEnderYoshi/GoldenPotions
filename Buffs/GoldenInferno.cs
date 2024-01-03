@@ -27,8 +27,7 @@ namespace GoldenPotions.Buffs
                 (int)(player.position.Y / 16f),
                 0.9f,
                 0.8f,
-                0.2f
-            );
+                0.2f);
 
             if (player.whoAmI == Main.myPlayer)
             {
@@ -42,6 +41,7 @@ namespace GoldenPotions.Buffs
             for (int i = 0; i < 200; i++)
             {
                 NPC target = Main.npc[i];
+
                 if (!CanDamageNPC(player, maxDist, target))
                 {
                     continue;
@@ -66,7 +66,11 @@ namespace GoldenPotions.Buffs
             for (int i = 0; i < 255; i++)
             {
                 Player target = Main.player[i];
-                if (!CanDamagePlayer(player, maxDist, target)) continue;
+
+                if (!CanDamagePlayer(player, maxDist, target))
+                {
+                    continue;
+                }
 
                 if (player.HasBuff(BuffID.OnFire3))
                 {
@@ -76,7 +80,11 @@ namespace GoldenPotions.Buffs
                 if (shouldApplyDamage)
                 {
                     target.Hurt(PlayerDeathReason.LegacyEmpty(), damage, 0);
-                    if (Main.netMode == NetmodeID.SinglePlayer) continue;
+
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        continue;
+                    }
 
                     var info = new Player.HurtInfo
                     {
@@ -119,7 +127,13 @@ namespace GoldenPotions.Buffs
         private float ringScale = 1f;
         private Asset<Texture2D> ringTexture;
 
-        public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+        public override void DrawEffects(
+            PlayerDrawSet drawInfo,
+            ref float r,
+            ref float g,
+            ref float b,
+            ref float a,
+            ref bool fullBright)
         {
             if (Player.GetModPlayer<GoldenPotionsPlayer>().goldenInferno)
             {
