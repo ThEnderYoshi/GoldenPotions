@@ -56,25 +56,24 @@ namespace GoldenPotions.Projectiles
             {
                 const int BuffTime = 60 * 60;
                 const float Radius = 80f;
+                const float RadiusSquared = Radius * Radius;
                 int buffID = ModContent.BuffType<GoldenStink>();
 
-                for (int i = 0; i < Main.maxPlayers; i++)
+                foreach (var player in Main.ActivePlayers)
                 {
-                    Player player = Main.player[i];
-                    float distance = Vector2.Distance(Projectile.Center, player.Center);
+                    float distanceSq = Vector2.DistanceSquared(Projectile.Center, player.Center);
 
-                    if (player.active && !player.dead && distance < Radius)
+                    if (!player.dead && distanceSq <= RadiusSquared)
                     {
                         player.AddBuff(buffID, BuffTime);
                     }
                 }
 
-                for (int i = 0; i < Main.maxNPCs; i++)
+                foreach (var npc in Main.ActiveNPCs)
                 {
-                    NPC npc = Main.npc[i];
-                    float distance = Vector2.Distance(Projectile.Center, npc.Center);
+                    float distanceSq = Vector2.DistanceSquared(Projectile.Center, npc.Center);
 
-                    if (npc.active && npc.life > 0 && distance < Radius)
+                    if (npc.life > 0 && distanceSq <= RadiusSquared)
                     {
                         npc.AddBuff(buffID, BuffTime);
                     }

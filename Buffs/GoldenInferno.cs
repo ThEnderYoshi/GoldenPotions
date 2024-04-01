@@ -1,199 +1,110 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using System;
+﻿using GoldenPotions.Players;
+using Microsoft.Xna.Framework;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.DataStructures;
 
 namespace GoldenPotions.Buffs
 {
     internal class GoldenInferno : GoldenBuff
     {
+        private const int DamageDealt = 10;
+        private const float DamageRadius = 200f;
+        private const float DamageRadiusSquared = DamageRadius * DamageRadius;
+
+        private const int DebuffId = BuffID.OnFire3;
+        private const int DebuffDuration = 2 * 60; // In frames.
+
+        private static readonly Vector3 LightEmitted = new(0.9f, 0.8f, 0.2f);
+
         public override int OverwriteBuff => BuffID.Inferno;
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void SafeUpdate(Player source, ref int buffIndex)
         {
-            player.GetModPlayer<GoldenPotionsPlayer>().goldenInferno = true;
+            GoldenPotionsPlayer modPlayer = source.GetModPlayer<GoldenPotionsPlayer>();
+            modPlayer.GoldenInferno = true;
+            bool shouldApplyDamage = modPlayer.GoldenInfernoCounter % 60 == 0;
+            Lighting.AddLight(source.position, LightEmitted);
 
-            const int damage = 10;
-            const float maxDist = 200f;
-            bool shouldApplyDamage = player.GetModPlayer<GoldenPotionsPlayer>()
-                .goldenInfernoCounter % 60 == 0;
-
-            Lighting.AddLight(
-                (int)(player.position.X / 16f),
-                (int)(player.position.Y / 16f),
-                0.9f,
-                0.8f,
-                0.2f);
-
-            if (player.whoAmI == Main.myPlayer)
+            if (source.whoAmI == Main.myPlayer)
             {
-                DamageNPCs(player, damage, maxDist, shouldApplyDamage);
-                DamagePlayers(player, damage, maxDist, shouldApplyDamage);
+                AffectNpcs(source, shouldApplyDamage);
+                AffectPlayers(source, shouldApplyDamage);
             }
         }
 
-        private static void DamageNPCs(Player player, int damage, float maxDist, bool shouldApplyDamage)
+        private static void AffectNpcs(Player source, bool shouldApplyDamage)
         {
-            for (int i = 0; i < 200; i++)
+            foreach (var target in Main.ActiveNPCs)
             {
-                NPC target = Main.npc[i];
-
-                if (!CanDamageNPC(player, maxDist, target))
-                {
+                if (!CanDamageNpc(target, source))
                     continue;
-                }
 
-                if (!target.HasBuff(BuffID.OnFire3))
-                {
-                    target.AddBuff(BuffID.OnFire3, 2 * 60);
-                }
+                if (!target.HasBuff(DebuffId))
+                    target.AddBuff(DebuffId, DebuffDuration);
 
                 if (shouldApplyDamage)
-                {
-                    player.ApplyDamageToNPC(target, damage, 0f, 0, false);
-                }
+                    source.ApplyDamageToNPC(target, DamageDealt, 0f, 0);
             }
         }
 
-        private static void DamagePlayers(Player player, int damage, float maxDist, bool shouldApplyDamage)
+        private static void AffectPlayers(Player source, bool shouldApplyDamage)
         {
-            if (!player.hostile) return;
+            if (!source.hostile)
+                return;
 
-            for (int i = 0; i < 255; i++)
+            foreach (var target in Main.ActivePlayers)
             {
-                Player target = Main.player[i];
-
-                if (!CanDamagePlayer(player, maxDist, target))
-                {
+                if (!CanDamagePlayer(source, target))
                     continue;
-                }
 
-                if (player.HasBuff(BuffID.OnFire3))
+                if (!target.HasBuff(DebuffId))
+                    target.AddBuff(DebuffId, DebuffDuration);
+
+                if (!shouldApplyDamage)
+                    continue;
+
+                target.Hurt(PlayerDeathReason.LegacyEmpty(), DamageDealt, 0);
+
+                // Wait, why should this ever run in singleplayer?
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                    continue;
+
+                var info = new Player.HurtInfo
                 {
-                    target.AddBuff(BuffID.OnFire3, 120); // 2 seconds
-                }
+                    Damage = DamageDealt,
+                    DamageSource = PlayerDeathReason.ByOther(16),
+                    PvP = true,
+                    DustDisabled = true,
+                };
 
-                if (shouldApplyDamage)
-                {
-                    target.Hurt(PlayerDeathReason.LegacyEmpty(), damage, 0);
-
-                    if (Main.netMode == NetmodeID.SinglePlayer)
-                    {
-                        continue;
-                    }
-
-                    var info = new Player.HurtInfo
-                    {
-                        Damage = damage,
-                        DamageSource = PlayerDeathReason.ByOther(16),
-                        PvP = true,
-                        DustDisabled = true,
-                    };
-                    NetMessage.SendPlayerHurt(i, info);
-                }
+                NetMessage.SendPlayerHurt(target.whoAmI, info);
             }
         }
 
-        private static bool CanDamageNPC(Player damager, float maxDist, NPC target)
+        //NOTE: Assumes the NPC is active.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static bool CanDamageNpc(NPC target, Player source)
         {
-            return target.active
-                && !target.friendly
+            return !target.friendly
                 && target.damage > 0
                 && !target.dontTakeDamage
-                && !target.buffImmune[BuffID.OnFire3]
-                //FIXME: Find alternative(?) to Player.this.CanNPCBeHitByPlayerOrPlayerProjectile
-                && Vector2.Distance(damager.Center, target.Center) <= maxDist;
+                && !target.buffImmune[DebuffId]
+                //TODO: Find alternative(?) to Player.this.CanNPCBeHitByPlayerOrPlayerProjectile
+                && Vector2.DistanceSquared(source.Center, target.Center) <= DamageRadiusSquared;
         }
 
-        private static bool CanDamagePlayer(Player damager, float maxDist, Player target)
+        //NOTE: Assumes the player is active.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static bool CanDamagePlayer(Player source, Player target)
         {
-            return target != damager
-                && target.active
+            return target.whoAmI != source.whoAmI
                 && !target.dead
                 && target.hostile
-                && !target.buffImmune[BuffID.OnFire3]
-                && (target.team != damager.team || target.team == 0)
-                && Vector2.Distance(damager.Center, target.Center) <= maxDist;
-        }
-    }
-
-    internal class GoldenInfernoPlayer : ModPlayer
-    {
-        private float ringRot;
-        private float ringScale = 1f;
-        private Asset<Texture2D> ringTexture;
-
-        public override void DrawEffects(
-            PlayerDrawSet drawInfo,
-            ref float r,
-            ref float g,
-            ref float b,
-            ref float a,
-            ref bool fullBright)
-        {
-            if (Player.GetModPlayer<GoldenPotionsPlayer>().goldenInferno)
-            {
-                DrawRing();
-            }
-        }
-
-        private void LoadRing()
-        {
-            ringTexture ??= ModContent.Request<Texture2D>("GoldenPotions/Buffs/GoldenInferno_Ring");
-        }
-
-        private void DrawRing()
-        {
-            LoadRing();
-
-            float scale = 1f;
-            float num2 = 0.1f;
-            float num3 = 0.9f;
-
-            // Scale
-            if (!Main.gamePaused) {
-                ringScale += 0.004f;
-            }
-
-            if (ringScale < 1f) {
-                scale = ringScale;
-            }
-            else
-            {
-                ringScale = 0.8f;
-                scale = ringScale;
-            }
-
-            // Rotation
-            if (!Main.gamePaused) { ringRot += 0.05f; }
-            if (ringRot > MathHelper.TwoPi) { ringRot -= MathHelper.TwoPi; }
-            if (ringRot < -MathHelper.TwoPi) { ringRot += MathHelper.TwoPi; }
-
-            // Draw rings
-            for (int i = 0; i < 3; i++)
-            {
-                float finalScale = scale + num2 * i;
-                if (finalScale > 1f) {
-                    finalScale -= num2 * 2f;
-                }
-                float color = MathHelper.Lerp(0.8f, 0f, Math.Abs(finalScale - num3) * 10f);
-
-                Main.spriteBatch.Draw(
-                    ringTexture.Value,
-                    Player.Center - Main.screenPosition,
-                    new Rectangle(0, 400 * i, 400, 400),
-                    new Color(color, color, color, color * 0.5f),
-                    ringRot + MathHelper.Pi / 3f * i,
-                    new Vector2(200f),
-                    finalScale,
-                    SpriteEffects.None,
-                    layerDepth: 0f
-                );
-            }
+                && !target.buffImmune[DebuffId]
+                && (target.team != source.team || target.team == 0)
+                && Vector2.DistanceSquared(source.Center, target.Center) <= DamageRadius;
         }
     }
 }

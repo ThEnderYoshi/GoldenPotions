@@ -4,40 +4,40 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace GoldenPotions
+namespace GoldenPotions.Players
 {
     internal class GoldenPotionsPlayer : ModPlayer
     {
-        public bool goldenAmmoReservation = false;
-        public bool goldenArchery = false;
-        public bool goldenEndurance = false;
-        public bool goldenFeatherfall = false;
-        public bool goldenFishing = false;
-        public bool goldenInferno = false;
-        public bool goldenNightOwl = false;
+        public bool GoldenAmmoReservation = false;
+        public bool GoldenArchery = false;
+        public bool GoldenEndurance = false;
+        public bool GoldenFeatherfall = false;
+        public bool GoldenFishing = false;
+        public bool GoldenInferno = false;
+        public bool GoldenNightOwl = false;
 
-        public int goldenInfernoCounter = 0;
+        public int GoldenInfernoCounter = 0;
 
         public override void ResetEffects()
         {
-            goldenAmmoReservation = false;
-            goldenArchery = false;
-            goldenEndurance = false;
-            goldenFeatherfall = false;
-            goldenFishing = false;
-            goldenInferno = false;
-            goldenNightOwl = false;
+            GoldenAmmoReservation = false;
+            GoldenArchery = false;
+            GoldenEndurance = false;
+            GoldenFeatherfall = false;
+            GoldenFishing = false;
+            GoldenInferno = false;
+            GoldenNightOwl = false;
         }
 
         public override bool CanConsumeAmmo(Item weapon, Item ammo)
         {
-            return !goldenAmmoReservation
-                || (Main.rand.NextFloat() > GoldenAmmoReservationPotion.NoConsumeChance * 0.01f);
+            return !GoldenAmmoReservation
+                || Main.rand.NextFloat() > GoldenAmmoReservationPotion.NoConsumeChance * 0.01f;
         }
 
         public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
         {
-            if (goldenFishing)
+            if (GoldenFishing)
             {
                 fishingLevel += 0.6f;
             }
@@ -52,7 +52,7 @@ namespace GoldenPotions
             ref float knockback
         )
         {
-            if (goldenArchery && item.useAmmo == AmmoID.Arrow)
+            if (GoldenArchery && item.useAmmo == AmmoID.Arrow)
             {
                 float multiplier = 1.0f + GoldenArcheryPotion.SpeedAndDamageBonus * 0.1f;
                 velocity *= multiplier;
@@ -62,7 +62,7 @@ namespace GoldenPotions
 
         public override void PreUpdateMovement()
         {
-            if (goldenFeatherfall && !Player.controlDown && Player.velocity.Y > 0f)
+            if (GoldenFeatherfall && !Player.controlDown && Player.velocity.Y > 0f)
             {
                 const float regularFallSpeed = 1f / 6f;
                 const float hoverFallSpeed = 0.0001f;
@@ -72,10 +72,10 @@ namespace GoldenPotions
 
         public override void PostUpdate()
         {
-            goldenInfernoCounter++;
-            if (goldenInfernoCounter >= 180)
+            GoldenInfernoCounter++;
+            if (GoldenInfernoCounter >= 180)
             {
-                goldenInfernoCounter = 0;
+                GoldenInfernoCounter = 0;
             }
         }
     }

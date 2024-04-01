@@ -246,7 +246,7 @@ Mods: {
 				Tooltip:
 					'''
 					Grants full night vision
-					'Warning: Will make your map ugly as sin'
+					[c/ffff00:Warning: Will make your map ugly as sin]
 					'''
 			}
 

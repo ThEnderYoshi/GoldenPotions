@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using GoldenPotions.Players;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,10 +11,11 @@ namespace GoldenPotions.Buffs
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<GoldenPotionsPlayer>().goldenNightOwl = true;
+            player.GetModPlayer<GoldenPotionsPlayer>().GoldenNightOwl = true;
         }
     }
 
+    //TODO: (maybe?) Move `GoldenNightOwlGlobalWall` to own file.
     internal class GoldenNightOwlGlobalWall : GlobalWall
     {
         public override void ModifyLight(
@@ -28,17 +30,13 @@ namespace GoldenPotions.Buffs
             // Pretty hacky; there's gotta be a better way to do fullbright...
             // (then again, it IS called 'Light HACK')
             //TODO: Check how Night Owl++ behaves in multiplayer
-            for (int k = 0; k < 255; k++)
-            {
-                Player player = Main.player[k];
+            Player player = Main.player[Main.myPlayer];
 
-                if (k == Main.myPlayer && player.GetModPlayer<GoldenPotionsPlayer>().goldenNightOwl)
-                {
-                    r = 1;
-                    g = 1;
-                    b = 1;
-                    break;
-                }
+            if (player.GetModPlayer<GoldenPotionsPlayer>().GoldenNightOwl)
+            {
+                r = 1;
+                g = 1;
+                b = 1;
             }
         }
     }

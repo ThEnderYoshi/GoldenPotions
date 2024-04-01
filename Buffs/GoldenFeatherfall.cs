@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using GoldenPotions.Players;
+using Terraria;
 using Terraria.ID;
 
 namespace GoldenPotions.Buffs
@@ -9,7 +10,7 @@ namespace GoldenPotions.Buffs
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<GoldenPotionsPlayer>().goldenFeatherfall = true;
+            player.GetModPlayer<GoldenPotionsPlayer>().GoldenFeatherfall = true;
         }
     }
 }

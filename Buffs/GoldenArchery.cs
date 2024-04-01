@@ -1,4 +1,5 @@
 ﻿using GoldenPotions.Items.Potions.Buff;
+using GoldenPotions.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -14,7 +15,7 @@ namespace GoldenPotions.Buffs
 
         public override void SafeUpdate(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<GoldenPotionsPlayer>().goldenArchery = true;
+            player.GetModPlayer<GoldenPotionsPlayer>().GoldenArchery = true;
         }
     }
 }

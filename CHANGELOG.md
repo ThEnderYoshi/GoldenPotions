@@ -3,7 +3,15 @@
 Sorted from newest to oldest.
 
 Follows Semantic Versioning.
-So far, there have been **6** updates.
+So far, there have been **7** updates.
+
+## v1.4.0 [2024-04-01]
+
+- **Ported** the mod to TMod's `April 2024 Stable Update`.
+- **Fixed**(?) `Hellfire` not being properly applied by Inferno++ in PvP.
+- **Changed** the tooltip of the Golden Night Owl Potion slightly.
+- **Changed**: Shine++ is now brighter.
+- **Changed**: Now properly follows TModLoader's [Asset Guidelines][assets].
 
 ## v1.3.0 [2024-01-03]
 
@@ -36,3 +44,7 @@ So far, there have been **6** updates.
 - **Added** (most) Recovery potions.
 - **Added** all Buff Potions.
 - **Added** an unfinished Gender Change Potion.
+
+<!-- References -->
+
+[assets]: https://github.com/tModLoader/tModLoader/wiki/Assets
