@@ -12,13 +12,15 @@ namespace GoldenPotions.Buffs
 
         public override int OverwriteBuff => BuffID.Lovestruck;
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
+            base.Update(player, ref buffIndex);
             SpawnHeart(player.GetSource_Buff(buffIndex), player.position, player.Size);
         }
 
-        public override void SafeUpdate(NPC npc, ref int buffIndex)
+        public override void Update(NPC npc, ref int buffIndex)
         {
+            base.Update(npc, ref buffIndex);
             SpawnHeart(npc.GetSource_Buff(buffIndex), npc.position, npc.Size);
         }
 

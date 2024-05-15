@@ -11,8 +11,9 @@ namespace GoldenPotions.Buffs
         public override LocalizedText Description => base.Description.WithFormatArgs(PercentBonus);
         public override int OverwriteBuff => BuffID.Rage;
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
+            base.Update(player, ref buffIndex);
             player.GetCritChance(DamageClass.Generic) += PercentBonus;
         }
     }

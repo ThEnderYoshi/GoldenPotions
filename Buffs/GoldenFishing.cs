@@ -8,8 +8,9 @@ namespace GoldenPotions.Buffs
     {
         public override int OverwriteBuff => BuffID.Fishing;
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
+            base.Update(player, ref buffIndex);
             player.GetModPlayer<GoldenPotionsPlayer>().GoldenFishing = true;
         }
     }

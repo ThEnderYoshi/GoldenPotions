@@ -3,7 +3,12 @@
 Sorted from newest to oldest.
 
 Follows Semantic Versioning.
-So far, there have been **7** updates.
+So far, there have been **8** updates.
+
+## v1.4.1 [2024-05-15]
+
+- **Ported** the mod to TMod's `May 2024 Stable Update`.
+- **Upgraded** the mod to `.NET 8`.
 
 ## v1.4.0 [2024-04-01]
 

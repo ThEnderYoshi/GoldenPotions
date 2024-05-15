@@ -17,14 +17,16 @@ namespace GoldenPotions.Buffs
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
+            base.Update(player, ref buffIndex);
             player.GetModPlayer<GoldenStinkPlayer>().goldenStink = true;
             SpawnFarts(player.GetSource_Buff(buffIndex), player.position, player.Size);
         }
 
-        public override void SafeUpdate(NPC npc, ref int buffIndex)
+        public override void Update(NPC npc, ref int buffIndex)
         {
+            base.Update(npc, ref buffIndex);
             SpawnFarts(npc.GetSource_Buff(buffIndex), npc.position, npc.Size);
         }
 

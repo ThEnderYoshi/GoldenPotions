@@ -10,8 +10,9 @@ namespace GoldenPotions.Buffs
         public override LocalizedText Description => base.Description.WithFormatArgs(SpeedBoost);
         public override int OverwriteBuff => BuffID.Mining;
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
+            base.Update(player, ref buffIndex);
             player.pickSpeed -= SpeedBoost * 0.01f;
         }
     }

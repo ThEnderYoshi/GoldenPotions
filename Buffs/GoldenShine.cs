@@ -14,8 +14,9 @@ namespace GoldenPotions.Buffs
 
         public override int OverwriteBuff => BuffID.Shine;
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
+            base.Update(player, ref buffIndex);
             Vector2 center = player.Center;
 
             for (var y = 1 - LightDiamondRadius; y <= LightDiamondRadius - 1; y++)

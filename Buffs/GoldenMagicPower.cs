@@ -11,8 +11,9 @@ namespace GoldenPotions.Buffs
         public override LocalizedText Description => base.Description.WithFormatArgs(PercentBonus);
         public override int OverwriteBuff => BuffID.MagicPower;
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
+            base.Update(player, ref buffIndex);
             player.GetDamage(DamageClass.Magic) *= 1.0f + PercentBonus * 0.01f;
         }
     }

@@ -2,6 +2,7 @@ Ever wish golden critters did more than just what they already do?
 Well this mod lets you use them to create upgraded variants of your favorite potions!
 
 CHANGELOG:
+- v1.4.1 : Ported to TMod May 2024 Update. Upgraded to .NET 8
 - v1.4.0 : Ported to TMod Apr 2024 Update. Fixed(?) Hellfire debuff not being properly applied by Inferno++ in PvP.
 - v1.3.0 : Ported to TMod Jan 2024 Update. Fixed Golden Love & Stink potions having the wrong stack size.
 - v1.2.0 : Golden Potions now stack to 9999. Fixed Archery++ affecting all projectile-creating weapons.

@@ -17,8 +17,6 @@ namespace GoldenPotions.Buffs
             {
                 player.ClearBuff(OverwriteBuff);
             }
-
-            SafeUpdate(player, ref buffIndex);
         }
 
         public override void Update(NPC npc, ref int buffIndex)
@@ -27,18 +25,6 @@ namespace GoldenPotions.Buffs
             {
                 npc.DelBuff(buffIndex);
             }
-
-            SafeUpdate(npc, ref buffIndex);
         }
-
-        /// <summary>
-        /// Use instead of <see cref="Update(Player, ref int)"/>.
-        /// </summary>
-        public virtual void SafeUpdate(Player player, ref int buffIndex) { }
-
-        /// <summary>
-        /// Use instead of <see cref="Update(NPC, ref int)"/>.
-        /// </summary>
-        public virtual void SafeUpdate(NPC npc, ref int buffIndex) { }
     }
 }

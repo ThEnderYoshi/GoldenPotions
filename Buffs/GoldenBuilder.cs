@@ -7,8 +7,9 @@ namespace GoldenPotions.Buffs
     {
         public override int OverwriteBuff => BuffID.Builder;
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
+            base.Update(player, ref buffIndex);
             player.tileSpeed *= 1.5f;
             player.wallSpeed *= 1.5f;
             player.blockRange += 2;

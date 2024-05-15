@@ -20,8 +20,10 @@ namespace GoldenPotions.Buffs
 
         public override int OverwriteBuff => BuffID.Inferno;
 
-        public override void SafeUpdate(Player source, ref int buffIndex)
+        public override void Update(Player source, ref int buffIndex)
         {
+            base.Update(source, ref buffIndex);
+
             GoldenPotionsPlayer modPlayer = source.GetModPlayer<GoldenPotionsPlayer>();
             modPlayer.GoldenInferno = true;
             bool shouldApplyDamage = modPlayer.GoldenInfernoCounter % 60 == 0;

@@ -12,8 +12,9 @@ namespace GoldenPotions.Buffs
 
         public override int OverwriteBuff => BuffID.Lifeforce;
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
+            base.Update(player, ref buffIndex);
             // What the fuck is happening here.
             // What are these numbers.
             player.statLifeMax2 += player.statLifeMax / 5 / 20 * 20 * 2;

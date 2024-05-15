@@ -10,8 +10,9 @@ namespace GoldenPotions.Buffs
         public override LocalizedText Description => base.Description.WithFormatArgs(SlotBonus);
         public override int OverwriteBuff => BuffID.Summoning;
 
-        public override void SafeUpdate(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
+            base.Update(player, ref buffIndex);
             player.maxMinions += SlotBonus;
         }
     }
